@@ -1,0 +1,26 @@
+{
+    "system": {
+        "serverNames": [
+            "app"
+        ],
+        "appPath": "/var/www/jcp",
+        "appUser": "me",
+        "appServerName": "app",
+        "bashServer": "app",
+        "bashPath": "<appPath>",
+        "bashUser": "me",
+        "debugServerNames": [
+            "app"
+        ]
+    },
+    "global": {
+        "systemName": "jcp"
+    },
+    "app": {
+        "imageName": "fewedev/cli",
+        "imageTag": "8.3",
+        "containerVolumes": [
+            "${systemPath}:<appPath>:<appUser>:w"
+        ]
+    }
+}

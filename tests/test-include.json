@@ -1,0 +1,8 @@
+{
+    "test": {
+        "param3": "{param1}"
+    },
+    "test2": {
+        "param1": "{test:param1}"
+    }
+}

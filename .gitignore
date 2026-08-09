@@ -1,0 +1,8 @@
+/files
+/vendor
+/.idea
+/.vscode
+/.vagrant
+/.phpunit.result.cache
+/.php-cs-fixer.cache
+/jcp.phar
