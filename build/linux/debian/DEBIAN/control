@@ -1,0 +1,5 @@
+Package: jcp
+Description: Json Configuration Parser
+Version: 1.0.0
+Maintainer: Andreas Knollmann
+Architecture: all
