@@ -136,19 +136,21 @@ class ProcessService
                                             $matchLength
                                         );
                                     } elseif (str_contains($matchValue, ':')) {
-                                        $matchParts = explode(':', $matchValue);
+                                        $configParsedValue = $this->arrays->getValue($config, $matchValue);
 
-                                        $configValue = $this->arrays->getValue($config, implode(':', $matchParts));
-
-                                        if (null === $configValue) {
+                                        if (null === $configParsedValue) {
                                             throw new ValueException(
                                                 sprintf('Could not replace placeholder: %s', $matchFullValue)
                                             );
                                         }
 
-                                        $configValue = $this->variables->stringValue(
-                                            $configValue
+                                        $configValue = substr_replace(
+                                            $configValue,
+                                            $this->variables->stringValue($configParsedValue),
+                                            $matchOffset,
+                                            $matchLength
                                         );
+                                        //$configValue = $this->variables->stringValue($configValue);
                                     } else {
                                         throw new ValueException(
                                             sprintf('Could not replace placeholder: %s', $matchFullValue)

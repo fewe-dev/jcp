@@ -35,17 +35,37 @@ test(
 
         expect($config)->toBeArray()->and($config)->toHaveCount(3)->and($config)->toMatchArray(
             [
-                'global' => ['param1' => '{param2}', 'param2' => '{{value1}}'],
+                'global' => [
+                    'param1' => '{param2}',
+                    'param2' => '{{value1}}',
+                    'param3' => 'prefix {{value1}}',
+                    'param4' => '{{value1}} suffix',
+                    'param5' => 'af {{value1}} fix'
+                ],
                 'test' => ['param1' => '{{value2}}', 'param2' => '{param1}', 'param3' => '{param1}'],
-                'test2' => ['param1' => '{test:param1}']
+                'test2' => [
+                    'param1' => 'prefix {test:param1}',
+                    'param2' => '{test:param1} suffix',
+                    'param3' => 'af {test:param1} fix'
+                ]
             ]
         );
 
         $config = $processService->processValues(
             [
-                'global' => ['param1' => '{param2}', 'param2' => '{{value1}}'],
+                'global' => [
+                    'param1' => '{param2}',
+                    'param2' => '{{value1}}',
+                    'param3' => 'prefix {{value1}}',
+                    'param4' => '{{value1}} suffix',
+                    'param5' => 'af {{value1}} fix'
+                ],
                 'test' => ['param1' => '{{value2}}', 'param2' => '{param1}', 'param3' => '{param1}'],
-                'test2' => ['param1' => '{test:param1}']
+                'test2' => [
+                    'param1' => 'prefix {test:param1}',
+                    'param2' => '{test:param1} suffix',
+                    'param3' => 'af {test:param1} fix'
+                ]
             ],
             [],
             false,
@@ -64,9 +84,15 @@ test(
 
         expect($config)->toBeArray()->and($config)->toHaveCount(3)->and($config)->toMatchArray(
             [
-                'global' => ['param1' => 'value1', 'param2' => 'value1'],
+                'global' => [
+                    'param1' => 'value1',
+                    'param2' => 'value1',
+                    'param3' => 'prefix value1',
+                    'param4' => 'value1 suffix',
+                    'param5' => 'af value1 fix'
+                ],
                 'test' => ['param1' => 'value2', 'param2' => 'value1', 'param3' => 'value1'],
-                'test2' => ['param1' => 'value2']
+                'test2' => ['param1' => 'prefix value2', 'param2' => 'value2 suffix', 'param3' => 'af value2 fix']
             ]
         );
     }

@@ -18,7 +18,12 @@ test(
             [
                 'require' => ['{configPath}/test-require.json'],
                 'include' => ['{configPath}/test-include.json'],
-                'global' => ['param2' => '{{value1}}'],
+                'global' => [
+                    'param2' => '{{value1}}',
+                    'param3' => 'prefix {{value1}}',
+                    'param4' => '{{value1}} suffix',
+                    'param5' => 'af {{value1}} fix'
+                ],
                 'test' => ['param1' => '{{value2}}', 'param2' => '{param1}']
             ]
         );

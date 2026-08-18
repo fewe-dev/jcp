@@ -3,6 +3,8 @@
         "param3": "{param1}"
     },
     "test2": {
-        "param1": "{test:param1}"
+        "param1": "prefix {test:param1}",
+        "param2": "{test:param1} suffix",
+        "param3": "af {test:param1} fix"
     }
 }
