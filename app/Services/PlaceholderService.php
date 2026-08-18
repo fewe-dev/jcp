@@ -22,7 +22,7 @@ class PlaceholderService
      */
     public function parse(OutputStyle $output, array $levels, string $file, array $parameters): array
     {
-        $placeHolders = [1 => ['configPath' => dirname($file)]];
+        $placeHolders = [];
 
         foreach ($levels as $level => $levelData) {
             $levelType = $levelData['type'];
@@ -31,6 +31,8 @@ class PlaceholderService
                 $placeHolders[$level] = $parameters;
             }
         }
+
+        $placeHolders[1]['configPath'] = dirname($file);
 
         $output->writeln(
             sprintf('Parameters: %s', trim(print_r($placeHolders, true))),
